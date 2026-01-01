@@ -1,3 +1,4 @@
+// Legacy types for backward compatibility
 export type Relation = "OWNER" | "TENANT" | "RELATIVE" | "VISITOR";
 export type StayStatus =
   | "PERMANENT_RESIDENCE"
@@ -37,6 +38,30 @@ export interface CreateResidentRequest {
 }
 
 export interface UpdateResidentRequest extends CreateResidentRequest {}
+
+// New types aligned with ktpm backend (NhanKhau)
+export interface NhanKhau {
+  id: number;
+  hoKhauId: number;
+  hoTen: string;
+  ngaySinh: string;
+  gioiTinh: string;
+  cmndCccd?: string;
+  quanHeVoiChuHo?: string;
+  ngheNghiep?: string;
+}
+
+export interface CreateNhanKhauRequest {
+  hoKhauId: number;
+  hoTen: string;
+  ngaySinh: string;
+  gioiTinh: string;
+  cmndCccd?: string;
+  quanHeVoiChuHo?: string;
+  ngheNghiep?: string;
+}
+
+export interface UpdateNhanKhauRequest extends CreateNhanKhauRequest {}
 
 export interface PaginationMetadata {
   pageNumber: number;
