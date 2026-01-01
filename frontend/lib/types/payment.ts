@@ -1,3 +1,4 @@
+// Legacy types for backward compatibility
 export interface PaymentResident {
   id: number;
   fullName: string;
@@ -62,3 +63,24 @@ export interface PaymentsResponse {
   numberOfElements: number;
   empty: boolean;
 }
+
+// New types aligned with ktpm backend (NopTien)
+export interface NopTien {
+  id: number;
+  khoanThuId: number;
+  hoKhauId: number;
+  soTien: number;
+  ngayNop: string;
+  nguoiNop?: string;
+  ghiChu?: string;
+}
+
+export interface CreateNopTienRequest {
+  khoanThuId: number;
+  hoKhauId: number;
+  soTien: number;
+  nguoiNop?: string;
+  ghiChu?: string;
+}
+
+export interface UpdateNopTienRequest extends CreateNopTienRequest {}

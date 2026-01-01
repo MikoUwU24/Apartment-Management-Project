@@ -39,41 +39,36 @@ const data = {
       icon: IconDashboard,
     },
     {
-      title: "Residents",
+      title: "Hộ Khẩu",
+      url: "/households",
+      icon: IconBuilding,
+    },
+    {
+      title: "Nhân Khẩu",
       url: "/residents",
       icon: IconUsers,
     },
     {
-      title: "Apartments",
-      url: "/apartments",
-      icon: IconBuilding,
-    },
-    {
-      title: "Vehicles",
-      url: "/vehicles",
-      icon: IconCar,
-    },
-    {
-      title: "Fees",
+      title: "Khoản Thu",
       url: "/fees",
       icon: IconMoneybag,
     },
     {
-      title: "Payments",
+      title: "Nộp Tiền",
       url: "/payments",
       icon: IconFileDescription,
     },
   ],
   navDocuments: [
     {
+      name: "Audit Logs",
+      url: "/audit-logs",
+      icon: IconFileDescription,
+    },
+    {
       name: "Statistics",
       url: "/statistics",
       icon: IconChartBar,
-    },
-    {
-      name: "Documents",
-      url: "/",
-      icon: IconFileDescription,
     },
   ],
   navSecondary: [
