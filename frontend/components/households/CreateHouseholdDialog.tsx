@@ -34,7 +34,7 @@ import { CreateHoKhauRequest } from "@/lib/types/household";
 const formSchema = z.object({
   tenChuHo: z.string().min(1, "Tên chủ hộ là bắt buộc"),
   diaChi: z.string().min(1, "Địa chỉ là bắt buộc"),
-  trangThai: z.number().min(0).max(1),
+  trangThai: z.number().min(0).max(1).optional().default(1),
 });
 
 interface CreateHouseholdDialogProps {
@@ -50,7 +50,7 @@ export function CreateHouseholdDialog({
   onCreate,
   isCreating,
 }: CreateHouseholdDialogProps) {
-  const form = useForm<CreateHoKhauRequest>({
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       tenChuHo: "",
@@ -59,9 +59,9 @@ export function CreateHouseholdDialog({
     },
   });
 
-  const onSubmit = async (data: CreateHoKhauRequest) => {
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
-      await onCreate?.(data);
+      await onCreate?.(data as CreateHoKhauRequest);
       form.reset();
       onOpenChange(false);
     } catch (error) {

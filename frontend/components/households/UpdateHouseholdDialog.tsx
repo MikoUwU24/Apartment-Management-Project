@@ -34,7 +34,7 @@ import { HoKhau, UpdateHoKhauRequest } from "@/lib/types/household";
 const formSchema = z.object({
   tenChuHo: z.string().min(1, "Tên chủ hộ là bắt buộc"),
   diaChi: z.string().min(1, "Địa chỉ là bắt buộc"),
-  trangThai: z.number().min(0).max(1),
+  trangThai: z.number().min(0).max(1).optional().default(1),
 });
 
 interface UpdateHouseholdDialogProps {
@@ -52,7 +52,7 @@ export function UpdateHouseholdDialog({
   onUpdate,
   isUpdating,
 }: UpdateHouseholdDialogProps) {
-  const form = useForm<UpdateHoKhauRequest>({
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       tenChuHo: household.tenChuHo,
@@ -69,9 +69,9 @@ export function UpdateHouseholdDialog({
     });
   }, [household, form]);
 
-  const onSubmit = async (data: UpdateHoKhauRequest) => {
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
-      await onUpdate?.(household.id, data);
+      await onUpdate?.(household.id, data as UpdateHoKhauRequest);
       onOpenChange(false);
     } catch (error) {
       console.error("Error updating household:", error);
